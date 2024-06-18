@@ -5,7 +5,7 @@
 Imagine a hypothetical LLM with the following two qualities:
 
 1. It has an infinite context length.
-2. It can perform long division at a high school level.
+2. It can perform long division at a **high school** level.
 
 Given these qualities, it should be able to compute B = **C / A** to an arbitrary number of decimal places and find the exact value if **B** is a terminating decimal.
 
