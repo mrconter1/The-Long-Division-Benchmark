@@ -14,7 +14,7 @@ If we assume:
 
 Then the following should be true:
 - The LLM should be able to compute \( B = C / A \) to an arbitrary number of decimal places accurately using long division.
-- 
+
 ## Question Creation Process
 
 This process ensures the creation of long division problems with terminating decimals, which have a finite number of decimal places.
