@@ -6,10 +6,10 @@ import random
 # Set up your OpenAI API key
 api_key = 'OpenAI API key'
 client = AsyncOpenAI(api_key=api_key)
-GPT_MODEL = "gpt-3.5-turbo"
+GPT_MODEL = "gpt-4o"
 
 # Global variables
-trials_per_length = 25
+evaluations_per_length = 25
 max_length = 7
 
 def generate_long_division_question(length):
@@ -24,7 +24,17 @@ def generate_long_division_question(length):
         if len(answer_str) <= length:
             break
 
-    question = f"Use long division to find the exact result of {float(C)} ÷ {A} to full precision. The answer should be in the format 'Answer: x.xxxx' where 'x.xxxx' is the result.."
+    question = f"""Use long division to find the exact result of {float(C)} ÷ {A} to full precision. 
+        Do not use any tools or calculators. Approximate answers are not allowed. 
+
+        The answer should be in the format 'Answer: x.xxxx' where 'x.xxxx' is the result. 
+        Please make sure your answer strictly follows this format. 
+
+        Examples:
+        If the result is 3.1415, write 'Answer: 3.1415'
+        If the result is 2.7182, write 'Answer: 2.7182'
+        """
+
     return question, round(answer, length)
 
 async def ask_model(question):
@@ -79,6 +89,7 @@ async def benchmark_model(evaluations_per_length, max_length):
                         print("Result: Incorrect\n")
                 except ValueError:
                     print("Result: Error in parsing model answer\n")
+                    print(model_answer)
             else:
                 print("Result: No response from model\n")
 
@@ -91,14 +102,15 @@ async def benchmark_model(evaluations_per_length, max_length):
     return results
 
 def main():
-    results = asyncio.run(benchmark_model(trials_per_length, max_length))
+    results = asyncio.run(benchmark_model(evaluations_per_length, max_length))
     print("\nFinal Results:")
     print(f"Model used: {GPT_MODEL}")
-    print(f"Number of evaluations per length: {trials_per_length}")
+    print(f"Number of evaluations per length: {evaluations_per_length}")
     print("| Length | Success Rate (%) |")
     print("|--------|------------------|")
     for length, success_rate in results.items():
         print(f"| {length}      | {success_rate:.2f}             |")
+    print()
 
 if __name__ == "__main__":
     main()
