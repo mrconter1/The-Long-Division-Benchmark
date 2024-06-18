@@ -1,10 +1,6 @@
 ### The Long Division Benchmark
 
-#### Description
-
-In the current landscape of scaled LLMs (Large Language Models), a significant focus has been on their ability to handle large contexts. However, an equally important aspect is their capability to generate long coherent texts. Writing a book, for instance, requires not only the ability to read long contexts but also to generate extensive text. Evaluating such an ability can be challenging, but one scalable and straightforward method is to test the LLMs' ability to perform long division. This task can be done without external tools and is easily scalable. Long division, a fundamental algorithm involving simple calculations, can be performed by humans given enough time, making it a suitable benchmark for LLMs.
-
-#### Benchmarking Basis
+#### Motivation
 
 Imagine a hypothetical LLM with the following two qualities:
 
@@ -12,6 +8,10 @@ Imagine a hypothetical LLM with the following two qualities:
 2. It can perform long division at a high school level.
 
 Given these qualities, it should be able to compute \( B = C / A \) to an arbitrary number of decimal places and find the exact value if \( B \) is a terminating decimal.
+
+#### Description
+
+In the current landscape of scaled Large Language Models (LLMs), a significant focus has been on their ability to handle large contexts. However, an equally important aspect is their capability to generate long coherent texts. Writing a book, for instance, requires not only the ability to read long contexts but also to generate extensive text. Evaluating such an ability can be challenging, but one scalable and straightforward method is to test the LLMs' ability to perform long division. This task can be done without external tools and is easily scalable. Long division, a fundamental algorithm involving simple calculations, can be performed by humans given enough time, making it a suitable benchmark for LLMs.
 
 #### Question Creation Process
 
