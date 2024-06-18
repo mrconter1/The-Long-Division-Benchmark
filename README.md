@@ -6,11 +6,12 @@ In the current landscape of scaled LLMs (Large Language Models), a significant f
 
 #### Benchmarking Basis
 
-Assuming:
-- The LLM has an infinite context length.
-- The LLM can perform long division at a high school level.
+Imagine a hypothetical LLM with the following two qualities:
 
-Then it should be able to compute \( B = C / A \) to an arbitrary number of decimal places accurately using long division.
+1. It has an infinite context length.
+2. It can perform long division at a high school level.
+
+Given these qualities, it should be able to compute \( B = C / A \) to an arbitrary number of decimal places and find the exact value if \( B \) is a terminating decimal.
 
 #### Question Creation Process
 
@@ -33,6 +34,8 @@ The creation process ensures long division problems with terminating decimals, h
 The script `benchmark.py` benchmarks different models by generating long division problems and evaluating the models' ability to solve them accurately. The process involves creating a division problem, posing it to the model, and then verifying the precision of the model's answer.
 
 ### Results
+
+Each entry in the results table represents the percentage of correct answers for 25 samples per number of decimal places.
 
 | Length | GPT-3.5-turbo (%) | GPT-4-turbo (%) | GPT-4o (%) |
 |--------|-------------------|-----------------|------------|
