@@ -65,17 +65,34 @@ def generate_long_division_question(length):
         if len(answer_str) <= length:
             break
 
-    # Format the question
-    question = f"Use long division to find the exact result of {float(C)} ÷ {A} to full precision."
+    # Format the question concisely with emphasis
+    question = f"Use long division to find the exact result of {float(C)} ÷ {A} to full precision. Do not use any tools or calculators. Approximate answers are not allowed."
     
     return question, answer
 
 # Example usage: Print five questions with n=5
-for _ in range(25):
-    question, answer = generate_long_division_question(5)
+for _ in range(5):
+    question, answer = generate_long_division_question(4)
     print(question)
     print(f"Answer: {answer}")
     print()
+    
+'''Output
+Use long division to find the exact result of 4159.6196 ÷ 8573 to full precision. Do not use any tools or calculators. Approximate answers are not allowed.
+Answer: 0.4852
+
+Use long division to find the exact result of 838.8372 ÷ 1284 to full precision. Do not use any tools or calculators. Approximate answers are not allowed.
+Answer: 0.6533
+
+Use long division to find the exact result of 4593.402 ÷ 8140 to full precision. Do not use any tools or calculators. Approximate answers are not allowed.
+Answer: 0.5643
+
+Use long division to find the exact result of 8026.7451 ÷ 8459 to full precision. Do not use any tools or calculators. Approximate answers are not allowed.
+Answer: 0.9489
+
+Use long division to find the exact result of 5861.025 ÷ 8550 to full precision. Do not use any tools or calculators. Approximate answers are not allowed.
+Answer: 0.6855
+'''
 ```
 
 This function generates a long division question that ensures the result is a terminating decimal. Adjust the `integer_length` and `decimal_length` parameters to scale the complexity of the question.
