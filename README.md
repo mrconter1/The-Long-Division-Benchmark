@@ -1,7 +1,3 @@
-Sure! Here's the revised README with the incorporated assumptions and statement:
-
----
-
 # The Long Division Benchmark
 
 ## Description
