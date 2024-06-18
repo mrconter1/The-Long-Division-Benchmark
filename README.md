@@ -32,8 +32,6 @@ Each entry in the results table represents the percentage of correct answers for
 | 6      | 0.00              | 0.00            | 0.00       |
 | 7      | 0.00              | 0.00            | 0.00       |
 
-Certainly! Here is the revised text with a direct markdown link to the `benchmark.py` script:
-
 ### Benchmark Script
 
 [benchmark.py](./benchmark.py) tests different models by generating long division problems and evaluating the models' ability to solve them accurately. The process involves creating a division problem, posing it to the model, and then verifying the precision of the model's answer.
