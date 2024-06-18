@@ -13,6 +13,20 @@ Given these qualities, it should be able to compute B = **C / A** to an arbitrar
 
 In the current landscape of scaled Large Language Models (LLMs), a significant focus has been on their ability to handle large contexts. However, an equally important aspect is their capability to generate long coherent texts. Writing a book, for instance, requires not only the ability to read long contexts but also to generate extensive text. Evaluating such an ability can be challenging, but one scalable and straightforward method is to test the LLMs' ability to perform long division. This task can be done without external tools and is easily scalable. Long division, a fundamental algorithm involving simple calculations, can be performed by humans given enough time, making it a suitable benchmark for LLMs.
 
+### Results
+
+Each entry in the results table represents the percentage of correct answers for 25 samples per number of decimal places.
+
+| Length | GPT-3.5-turbo (%) | GPT-4-turbo (%) | GPT-4o (%) |
+|--------|-------------------|-----------------|------------|
+| 1      | 92.00             | 96.00           | 92.00      |
+| 2      | 60.00             | 72.00           | 60.00      |
+| 3      | 20.00             | 56.00           | 52.00      |
+| 4      | 16.00             | 28.00           | 32.00      |
+| 5      | 0.00              | 4.00            | 4.00       |
+| 6      | 0.00              | 0.00            | 0.00       |
+| 7      | 0.00              | 0.00            | 0.00       |
+
 #### Question Creation Process
 
 The creation process ensures long division problems with terminating decimals, having a finite number of decimal places.
@@ -32,20 +46,6 @@ The creation process ensures long division problems with terminating decimals, h
 ### Long Division Benchmark Script
 
 The script `benchmark.py` benchmarks different models by generating long division problems and evaluating the models' ability to solve them accurately. The process involves creating a division problem, posing it to the model, and then verifying the precision of the model's answer.
-
-### Results
-
-Each entry in the results table represents the percentage of correct answers for 25 samples per number of decimal places.
-
-| Length | GPT-3.5-turbo (%) | GPT-4-turbo (%) | GPT-4o (%) |
-|--------|-------------------|-----------------|------------|
-| 1      | 92.00             | 96.00           | 92.00      |
-| 2      | 60.00             | 72.00           | 60.00      |
-| 3      | 20.00             | 56.00           | 52.00      |
-| 4      | 16.00             | 28.00           | 32.00      |
-| 5      | 0.00              | 4.00            | 4.00       |
-| 6      | 0.00              | 0.00            | 0.00       |
-| 7      | 0.00              | 0.00            | 0.00       |
 
 ### Conclusion
 
