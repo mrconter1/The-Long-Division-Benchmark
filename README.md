@@ -41,21 +41,49 @@ This process ensures the creation of long division problems with terminating dec
 ```python
 import random
 
-def generate_long_division_question(integer_length, decimal_length):
+def generate_long_division_question(length):
     # Generate a random integer of specified length
-    A = random.randint(10**(integer_length-1), 10**integer_length - 1)
+    A = random.randint(10**(length-1), 10**length - 1)
     
     # Generate a random decimal of specified length
-    decimal_part = random.randint(1, 10**decimal_length - 1)
-    B = decimal_part / (10 ** decimal_length)
+    decimal_part = random.randint(1, 10**length - 1)
+    B = decimal_part / (10 ** length)
     
     # Calculate the product to ensure a terminating decimal
     C = A * B
     
     # Format the question
-    question = f"Divide {C} by {A} using long division."
+    question = f"Use long division to find the exact result of {C} ÷ {A} to full precision."
     
-    return question
+    # Calculate the answer
+    answer = C / A
+    
+    return question, answer
+
+# Example usage: Print five questions with n=5
+for _ in range(5):
+    question, answer = generate_long_division_question(2)
+    print(question)
+    print(f"Answer: {answer}")
+    print()
+    
+'''Output
+
+Use long division to find the exact result of 12.0 ÷ 30 to full precision.
+Answer: 0.4
+
+Use long division to find the exact result of 1.98 ÷ 66 to full precision.
+Answer: 0.03
+
+Use long division to find the exact result of 3.85 ÷ 77 to full precision.
+Answer: 0.05
+
+Use long division to find the exact result of 38.7 ÷ 45 to full precision.
+Answer: 0.8600000000000001
+
+Use long division to find the exact result of 13.65 ÷ 21 to full precision.
+Answer: 0.65
+'''
 ```
 
 This function generates a long division question that ensures the result is a terminating decimal. Adjust the `integer_length` and `decimal_length` parameters to scale the complexity of the question.
