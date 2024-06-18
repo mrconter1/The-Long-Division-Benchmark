@@ -1,3 +1,7 @@
+Sure! Here's the revised README with the incorporated assumptions and statement:
+
+---
+
 # The Long Division Benchmark
 
 ## Description
@@ -5,6 +9,15 @@
 In an age of scaled LLMs (Large Language Models), one focus that is getting increased attention is the ability for LLMs to handle large contexts. However, another aspect that arguably has not been explored much is the ability to generate long coherent texts. Writing a book, for instance, requires not only the ability to read long contexts but also the ability to generate long texts. So how would you go about benchmarking this? Generating a book can be challenging to classify as good or bad.
 
 Another potential way that doesn’t require external tools and is scalable is to ask the LLM to simply perform long division. The advantage of this method is that it can be easily scaled and does not necessarily require humans to use a calculator, though the calculation might take longer. Fundamentally, the algorithm of long division consists of simple calculations. In theory, a human can perform a division resulting in many decimals given enough time. This provides a simple yet effective way to benchmark LLMs against tasks that humans can do, simultaneously testing their ability to use long context in a concrete fashion.
+
+## Benchmarking Basis
+
+If we assume:
+- The LLM has an infinite context length.
+- The LLM can perform long division at the level of a primary school child.
+
+Then the following should be true:
+- The LLM should be able to compute \( B = \frac{C}{A} \) to an arbitrary number of decimal places accurately using long division.
 
 ## Question Creation Process
 
