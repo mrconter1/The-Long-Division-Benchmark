@@ -46,3 +46,7 @@ Each entry in the results table represents the percentage of correct answers for
 | 5      | 0.00              | 4.00            | 4.00       |
 | 6      | 0.00              | 0.00            | 0.00       |
 | 7      | 0.00              | 0.00            | 0.00       |
+
+### Conclusion
+
+This repository offers a scalable method to validate the capability of future LLMs to not only read long contexts but also to constructively use them. By leveraging long division as a benchmark, it provides a straightforward way to evaluate how well LLMs utilize long contexts meaningfully. The results show that newer models can better handle longer contexts, emphasizing the need for continuous improvement. This benchmark ensures that LLMs can perform complex tasks effectively, combining long contexts with straightforward operations to yield exact answers, thus validating their practical application of long-context understanding.
