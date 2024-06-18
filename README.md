@@ -47,12 +47,6 @@ def generate_long_division_question(integer_length, decimal_length):
     question = f"Divide {C} by {A} using long division."
     
     return question
-
-# Example usage
-integer_length = 3
-decimal_length = 2
-question = generate_long_division_question(integer_length, decimal_length)
-print(question)
 ```
 
 This function generates a long division question that ensures the result is a terminating decimal. Adjust the `integer_length` and `decimal_length` parameters to scale the complexity of the question.
