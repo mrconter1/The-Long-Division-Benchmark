@@ -10,7 +10,7 @@ Another potential way that doesn’t require external tools and is scalable is t
 
 If we assume:
 - The LLM has an infinite context length.
-- The LLM can perform long division at the level of a primary school child.
+- The LLM can perform long division at the level of a high school student.
 
 Then the following should be true:
 - The LLM should be able to compute \( B = \frac{C}{A} \) to an arbitrary number of decimal places accurately using long division.
