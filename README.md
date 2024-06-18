@@ -7,7 +7,7 @@ Imagine a hypothetical LLM with the following two qualities:
 1. It has an infinite context length.
 2. It can perform long division at a high school level.
 
-Given these qualities, it should be able to compute \( B = C / A \) to an arbitrary number of decimal places and find the exact value if \( B \) is a terminating decimal.
+Given these qualities, it should be able to compute B = **C / A** to an arbitrary number of decimal places and find the exact value if **B** is a terminating decimal.
 
 #### Description
 
@@ -18,16 +18,16 @@ In the current landscape of scaled Large Language Models (LLMs), a significant f
 The creation process ensures long division problems with terminating decimals, having a finite number of decimal places.
 
 1. **Generate an Integer**:
-   - **Input**: Length \( n \) (number of digits)
-   - **Output**: Integer \( A \)
+   - **Input**: Length **n** (number of digits)
+   - **Output**: Integer **A**
 
 2. **Generate a Decimal Number**:
-   - **Input**: Length \( m \) (number of decimal places)
-   - **Output**: Decimal number \( B \) (finite decimal)
+   - **Input**: Length **m** (number of decimal places)
+   - **Output**: Decimal number **B** (finite decimal)
 
 3. **Multiply the Integer and Decimal**:
-   - **Calculate**: \( C = A * B \)
-   - **Result**: Number \( C \) that, when divided by \( A \), results in \( B \), ensuring a non-repeating finite decimal.
+   - **Calculate**: **C = A * B**
+   - **Result**: Number **C** that, when divided by **A**, results in **B**, ensuring a non-repeating finite decimal.
 
 ### Long Division Benchmark Script
 
