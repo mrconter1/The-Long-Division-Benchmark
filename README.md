@@ -1,6 +1,6 @@
 ### The Long Division Benchmark
 
-#### Motivation
+#### Premise
 
 Imagine a hypothetical LLM with the following two qualities:
 
