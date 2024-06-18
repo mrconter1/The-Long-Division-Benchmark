@@ -26,7 +26,7 @@ The creation process ensures long division problems with terminating decimals, h
    - **Output**: Decimal number \( B \) (finite decimal)
 
 3. **Multiply the Integer and Decimal**:
-   - **Calculate**: \( C = A \times B \)
+   - **Calculate**: \( C = A * B \)
    - **Result**: Number \( C \) that, when divided by \( A \), results in \( B \), ensuring a non-repeating finite decimal.
 
 ### Long Division Benchmark Script
