@@ -30,25 +30,13 @@ Each entry in the results table represents the percentage of correct answers for
 | 6      | 0.00              | 0.00            | 0.00       |
 | 7      | 0.00              | 0.00            | 0.00       |
 
-#### Question Creation Process
+Certainly! Here is the revised text with a direct markdown link to the `benchmark.py` script:
 
-The creation process ensures long division problems with terminating decimals, having a finite number of decimal places.
+### Benchmark Script
 
-1. **Generate an Integer**:
-   - **Input**: Length **n** (number of digits)
-   - **Output**: Integer **A**
+[benchmark.py](./benchmark.py) tests different models by generating long division problems and evaluating the models' ability to solve them accurately. The process involves creating a division problem, posing it to the model, and then verifying the precision of the model's answer.
 
-2. **Generate a Decimal Number**:
-   - **Input**: Length **m** (number of decimal places)
-   - **Output**: Decimal number **B** (finite decimal)
-
-3. **Multiply the Integer and Decimal**:
-   - **Calculate**: **C = A * B**
-   - **Result**: Number **C** that, when divided by **A**, results in **B**, ensuring a non-repeating finite decimal.
-
-### Long Division Benchmark Script
-
-The script `benchmark.py` benchmarks different models by generating long division problems and evaluating the models' ability to solve them accurately. The process involves creating a division problem, posing it to the model, and then verifying the precision of the model's answer.
+To ensure long division problems with terminating decimals, the question creation process involves three main steps. First, an integer **A** is generated based on the specified number of digits. Next, a decimal number **B** with a finite number of decimal places is generated. Finally, the integer **A** and the decimal **B** are multiplied to calculate **C**, ensuring that dividing **C** by **A** results in **B**, thereby guaranteeing a non-repeating finite decimal.
 
 ### Conclusion
 
