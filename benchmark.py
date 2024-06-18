@@ -4,7 +4,7 @@ import asyncio
 import random
 
 # Set up your OpenAI API key
-api_key = 'OpenAI API key'
+api_key = ''
 client = AsyncOpenAI(api_key=api_key)
 GPT_MODEL = "gpt-4o"
 
@@ -42,7 +42,7 @@ async def ask_model(question):
         response = await client.chat.completions.create(
             model=GPT_MODEL,
             messages=[
-                {"role": "system", "content": "You are a helpful assistant that provides exact answers to mathematical questions."},
+                {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": question}
             ],
             temperature=0.5
