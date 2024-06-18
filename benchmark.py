@@ -9,7 +9,7 @@ client = AsyncOpenAI(api_key=api_key)
 GPT_MODEL = "gpt-3.5-turbo"
 
 # Global variables
-evaluations_per_length = 25
+trials_per_length = 25
 max_length = 7
 
 def generate_long_division_question(length):
@@ -90,13 +90,15 @@ async def benchmark_model(evaluations_per_length, max_length):
 
     return results
 
+def main():
+    results = asyncio.run(benchmark_model(trials_per_length, max_length))
+    print("\nFinal Results:")
+    print(f"Model used: {GPT_MODEL}")
+    print(f"Number of evaluations per length: {trials_per_length}")
+    print("| Length | Success Rate (%) |")
+    print("|--------|------------------|")
+    for length, success_rate in results.items():
+        print(f"| {length}      | {success_rate:.2f}             |")
+
 if __name__ == "__main__":
-    try:
-        results = asyncio.run(benchmark_model(evaluations_per_length, max_length))
-        print("\nFinal Results:")
-        print("| Length | Success Rate (%) |")
-        print("|--------|------------------|")
-        for length, success_rate in results.items():
-            print(f"| {length}      | {success_rate:.2f}             |")
-    except Exception as e:
-        print()
+    main()
