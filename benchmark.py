@@ -2,6 +2,7 @@ from fractions import Fraction
 import random
 import asyncio
 import re
+import os
 
 # List of models to benchmark
 models_to_benchmark = [
@@ -12,10 +13,10 @@ models_to_benchmark = [
 ]
 
 # Global variables
-evaluations_per_length = 2
-max_length = 5
-openai_api_key = 'YOUR_KEY'
-google_api_key = 'YOUR_KEY'
+evaluations_per_length = 25
+max_length = 7
+openai_api_key = os.getenv('OPENAI_API_KEY')
+google_api_key = os.getenv('GOOGLE_API_KEY')
 
 # OpenAI setup
 from openai import AsyncOpenAI
