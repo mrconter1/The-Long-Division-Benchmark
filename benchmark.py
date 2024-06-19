@@ -40,9 +40,8 @@ def generate_long_division_question(length):
 
     question = f"""Use long division to find the exact result of {float(C)} ÷ {A} to full precision. 
         Do not use any tools or calculators. Approximate answers are not allowed. 
-
-        The answer should be in the format 'Answer: x.xxxx' where 'x.xxxx' is the result. 
-        Please make sure your answer strictly follows this format. 
+        Avoid taking shortcuts or estimating steps in the execution. 
+        Perform all calculations thoroughly and exactly.
 
         Examples:
         If the result is 3.1415, write 'Answer: 3.1415'
