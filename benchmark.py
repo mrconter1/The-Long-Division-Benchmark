@@ -94,7 +94,7 @@ async def benchmark_model(model, evaluations_per_length, max_length):
             if model_answer:
                 try:
                     # Use regex to find the answer in the model's response
-                    answer_match = re.search(r'Answer:\s*([-+]?\d*\.?\d+|\d+)', model_answer)
+                    answer_match = re.search(r'.*Answer.*?([\d.]+)', model_answer, re.DOTALL)
                     if answer_match:
                         parsed_answer = float(answer_match.group(1))
                         print(f"Given Answer: {parsed_answer}")
