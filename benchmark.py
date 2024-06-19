@@ -1,6 +1,7 @@
+from fractions import Fraction
 import random
 import asyncio
-from fractions import Fraction
+import re
 
 # List of models to benchmark
 models_to_benchmark = [
@@ -91,13 +92,19 @@ async def benchmark_model(model, evaluations_per_length, max_length):
 
             if model_answer:
                 try:
-                    parsed_answer = float(model_answer.split('Answer: ')[-1])
-                    print(f"Given Answer: {parsed_answer}")
-                    if parsed_answer == correct_answer:
-                        correct += 1
-                        print("Result: Correct\n")
+                    # Use regex to find the answer in the model's response
+                    answer_match = re.search(r'Answer:\s*([-+]?\d*\.?\d+|\d+)', model_answer)
+                    if answer_match:
+                        parsed_answer = float(answer_match.group(1))
+                        print(f"Given Answer: {parsed_answer}")
+                        if parsed_answer == correct_answer:
+                            correct += 1
+                            print("Result: Correct\n")
+                        else:
+                            print("Result: Incorrect\n")
                     else:
-                        print("Result: Incorrect\n")
+                        print("Result: No valid answer found\n")
+                        print(model_answer)
                 except ValueError:
                     print("Result: Error in parsing model answer\n")
                     print(model_answer)
@@ -109,6 +116,7 @@ async def benchmark_model(model, evaluations_per_length, max_length):
         print(f"Success Rate for length {length}: {success_rate:.2f}%\n")
 
     return model["name"], results
+
 
 async def main():
     all_results = {}
