@@ -1,16 +1,28 @@
-from openai import AsyncOpenAI
-from fractions import Fraction
-import asyncio
 import random
+import asyncio
+from fractions import Fraction
 
-# Set up your OpenAI API key
-api_key = ''
-client = AsyncOpenAI(api_key=api_key)
-GPT_MODEL = "gpt-4o"
+# List of models to benchmark
+models_to_benchmark = [
+    {"provider": "openai", "name": "gpt-3.5-turbo"},
+    {"provider": "openai", "name": "gpt-4-turbo"},
+    {"provider": "openai", "name": "gpt-4o"},
+    {"provider": "google", "name": "gemini-1.5-pro"}
+]
 
 # Global variables
-evaluations_per_length = 25
-max_length = 7
+evaluations_per_length = 2
+max_length = 5
+openai_api_key = 'YOUR_KEY'
+google_api_key = 'YOUR_KEY'
+
+# OpenAI setup
+from openai import AsyncOpenAI
+openai_client = AsyncOpenAI(api_key=openai_api_key)
+
+# Google setup
+import google.generativeai as genai
+genai.configure(api_key=google_api_key)
 
 def generate_long_division_question(length):
     while True:
@@ -37,41 +49,40 @@ def generate_long_division_question(length):
 
     return question, round(answer, length)
 
-async def ask_model(question):
+async def ask_model(question, model):
     try:
-        response = await client.chat.completions.create(
-            model=GPT_MODEL,
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": question}
-            ],
-            temperature=0.5
-        )
-        answer = response.choices[0].message.content.strip()
+        if model["provider"] == "openai":
+            response = await openai_client.chat.completions.create(
+                model=model["name"],
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": question}
+                ],
+                temperature=0.5
+            )
+            answer = response.choices[0].message.content.strip()
+        elif model["provider"] == "google":
+            google_model = genai.GenerativeModel(model["name"])
+            response = google_model.generate_content(question)
+            answer = response.text.strip()
         return answer
     except Exception as e:
         print(f"Error during API call: {e}")
         return None
 
-async def benchmark_model(evaluations_per_length, max_length):
+async def benchmark_model(model, evaluations_per_length, max_length):
     results = {}
-
-    print(f"Model chosen: {GPT_MODEL}")
-    print(f"Number of evaluations for each length: {evaluations_per_length}")
-    print("-"*50)
-    print("Evaluation starts now:\n")
+    print(f"Evaluating model: {model['name']}")
 
     for length in range(1, max_length + 1):
-        print(f"Evaluating model for length: {length}")
-        print("-"*40)
         correct = 0
-
         tasks = []
+
         for _ in range(evaluations_per_length):
             question, correct_answer = generate_long_division_question(length)
             tasks.append((question, correct_answer))
 
-        responses = await asyncio.gather(*[ask_model(q) for q, _ in tasks])
+        responses = await asyncio.gather(*[ask_model(q, model) for q, _ in tasks])
 
         for (question, correct_answer), model_answer in zip(tasks, responses):
             question_str = question.split("of ")[-1].split(" to")[0]
@@ -95,22 +106,34 @@ async def benchmark_model(evaluations_per_length, max_length):
 
         success_rate = (correct / evaluations_per_length) * 100
         results[length] = success_rate
-        print(f"Success Rate for length {length}: {success_rate:.2f}%")
-        print("-"*40)
-        print()
+        print(f"Success Rate for length {length}: {success_rate:.2f}%\n")
 
-    return results
+    return model["name"], results
 
-def main():
-    results = asyncio.run(benchmark_model(evaluations_per_length, max_length))
+async def main():
+    all_results = {}
+    for model in models_to_benchmark:
+        model_name, results = await benchmark_model(model, evaluations_per_length, max_length)
+        all_results[model_name] = results
+
+    # Generating the final results table
     print("\nFinal Results:")
-    print(f"Model used: {GPT_MODEL}")
-    print(f"Number of evaluations per length: {evaluations_per_length}")
-    print("| Length | Success Rate (%) |")
-    print("|--------|------------------|")
-    for length, success_rate in results.items():
-        print(f"| {length}      | {success_rate:.2f}             |")
-    print()
+    lengths = list(range(1, max_length + 1))
+    headers = ["Length"] + [model["name"] for model in models_to_benchmark]
+    table = []
+
+    for length in lengths:
+        row = [length]
+        for model in models_to_benchmark:
+            model_name = model["name"]
+            row.append(f"{all_results[model_name][length]:.2f}")
+        table.append(row)
+
+    # Print the table
+    print("| " + " | ".join(headers) + " |")
+    print("| " + " | ".join(["--------"] * len(headers)) + " |")
+    for row in table:
+        print("| " + " | ".join(map(str, row)) + " |")
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
